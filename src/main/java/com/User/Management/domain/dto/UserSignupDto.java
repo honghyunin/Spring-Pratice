@@ -1,9 +1,8 @@
-package com.User.Management.dto;
+package com.User.Management.domain.dto;
 
-import com.User.Management.domain.User;
+import com.User.Management.domain.Entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter

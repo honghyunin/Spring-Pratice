@@ -1,7 +1,7 @@
 package com.User.Management.contoller;
 
-import com.User.Management.dto.UserSigninRequestDto;
-import com.User.Management.dto.UserSignupDto;
+import com.User.Management.domain.dto.UserSigninRequestDto;
+import com.User.Management.domain.dto.UserSignupDto;
 import com.User.Management.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

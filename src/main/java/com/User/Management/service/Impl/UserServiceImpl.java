@@ -1,12 +1,13 @@
-package com.User.Management.service;
+package com.User.Management.service.Impl;
 
 import com.User.Management.advice.exception.NotMatchPasswordException;
 import com.User.Management.advice.exception.UserAlreadyExistsException;
 import com.User.Management.advice.exception.UserNotFoundException;
-import com.User.Management.domain.User;
-import com.User.Management.dto.UserSigninRequestDto;
-import com.User.Management.dto.UserSignupDto;
+import com.User.Management.domain.Entity.User;
+import com.User.Management.domain.dto.UserSigninRequestDto;
+import com.User.Management.domain.dto.UserSignupDto;
 import com.User.Management.repository.UserRepository;
+import com.User.Management.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

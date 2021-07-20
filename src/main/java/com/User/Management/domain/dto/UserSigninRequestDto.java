@@ -1,12 +1,18 @@
-package com.User.Management.dto;
+package com.User.Management.domain.dto;
 
 
-import com.User.Management.domain.User;
+import com.User.Management.domain.Entity.Role;
+import com.User.Management.domain.Entity.User;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter
+import java.util.Collections;
+
+@Getter @Setter
 @NoArgsConstructor
+@Builder
 public class UserSigninRequestDto {
     private String id;
     private String password;
@@ -18,6 +24,7 @@ public class UserSigninRequestDto {
         return User.builder()
                 .id(id)
                 .password(password)
+                .roles(Collections.singletonList(Role.ROLE_CLIENT))
                 .build();
     }
 }
