@@ -3,6 +3,7 @@ package com.User.Management.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,12 +33,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .apply(new JwtTokenFilterConfigurer(jwtTokenProdvider));
 
-        http.exceptionHandling().accessDeniedPage("/login");
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception{
-        web.ignoring().antMatchers("/h2-console/**");
+        web.ignoring().antMatchers("/**api-docs","/swagger-resources/**","/swagger-ui.html","/webjars/**","/swagger/**","/configuration/ui","/api/**","/h2-console/**");
     }
     @Bean
     public PasswordEncoder passwordEncoder(){

@@ -14,10 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-@RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
     private final JwtTokenProdvider jwtTokenProdvider;
-
+    public JwtTokenFilter(JwtTokenProdvider jwtTokenProdvider) {
+        this.jwtTokenProdvider = jwtTokenProdvider;
+    }
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = jwtTokenProdvider.resolveToken(request);
@@ -26,10 +27,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                 Authentication authentication = jwtTokenProdvider.getAuthentication(token);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
-            SecurityContextHolder.clearContext();
         }catch (CustomException e){
+            SecurityContextHolder.clearContext();
             response.sendError(e.getHttpstatus().value(),e.getMessage());
-            return ;
+            return;
         }
+        filterChain.doFilter(request, response);
     }
 }

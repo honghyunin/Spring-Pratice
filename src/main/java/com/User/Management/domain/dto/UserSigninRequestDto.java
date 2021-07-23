@@ -14,16 +14,16 @@ import java.util.Collections;
 @NoArgsConstructor
 @Builder
 public class UserSigninRequestDto {
-    private String id;
+    private String email;
     private String password;
-    public UserSigninRequestDto(String id, String password){
-        this.id = id;
+    public UserSigninRequestDto(String email, String password){
+        this.email = email;
         this.password = password;
     }
     public User toEntity(){
         return User.builder()
-                .id(id)
-                .password(password)
+                .email(this.getEmail())
+                .password(this.getPassword())
                 .roles(Collections.singletonList(Role.ROLE_CLIENT))
                 .build();
     }

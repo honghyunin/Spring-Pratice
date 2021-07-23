@@ -26,15 +26,13 @@ public class User implements UserDetails {
     @Column(name = "USER_EMAIL")
     private String email;
 
-    @Column(name = "USER_ID")
-    private String id;
-
     @Column(name = "USER_NAME")
-    private String name;
+    private String username;
 
     @Column(name = "USER_PASSWORD")
     private String password;
-    @ElementCollection
+
+    @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     @Column(name="ROLE")
     private List<Role> roles = new ArrayList<>();
@@ -43,23 +41,17 @@ public class User implements UserDetails {
         List<String> rolesConvertString = this.roles.stream().map(Enum::name).collect(Collectors.toList());
         return rolesConvertString.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
-    public void update(String ID, String PW){
-        this.id = ID;
+    public void update(String email, String PW){
+        this.email = email;
         this.password = PW;
     }
-    @Builder
-    public User(String id, String password){
-        this.id = id;
-        this.password = password;
-    }
-    public String getPassword(){
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.name;
-    }
+//    @Builder
+//    public User(String email, String password,String username, List<Role> roles){
+//        this.email = email;
+//        this.password = password;
+//        this.username=username;
+//        this.roles = roles;
+//    }
 
     @Override
     public boolean isAccountNonExpired() { // 계정이 만료되지 않았는 지를 리턴한다 ( true : 만료안됨)

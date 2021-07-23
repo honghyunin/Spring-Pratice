@@ -6,6 +6,8 @@ import com.User.Management.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -20,7 +22,8 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@RequestBody UserSigninRequestDto userSigninRequestDto){
-        return userService.login(userSigninRequestDto);
+        userService.login(userSigninRequestDto);
+        return "로그인에 성공하였습니다";
     }
 }
 // EZY-SERVER 코드 보고 SecurityConfiguration에다가 특정 도메인 권한 없이 출입 허락하기
