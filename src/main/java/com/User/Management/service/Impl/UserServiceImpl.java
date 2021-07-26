@@ -22,9 +22,9 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtTokenProdvider jwtTokenProdvider;
-    private final RedisUtil redisUtil;
+    private final PasswordEncoder passwordEncoder; // 비밀번호를 암호화하기 위한 클래스를 선언해줌
+    private final JwtTokenProdvider jwtTokenProdvider; // 토큰을 생성해줄 기능을 가지고 있는 클래스
+    private final RedisUtil redisUtil; // username을 암호화된 비밀번호와 저장할 클래스
     @Override
     public User signup(UserSignupDto userSignupDto) {
         if (userRepository.findByEmail(userSignupDto.getEmail()) != null) {

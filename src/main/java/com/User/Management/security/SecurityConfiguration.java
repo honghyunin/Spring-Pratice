@@ -12,8 +12,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-@EnableWebSecurity(debug = true)
-@Configuration
+@EnableWebSecurity(debug = true) // 웹 보안을 활성화 시키며 스프링 시큐리티의 WebSecurityConfigure 를 구현하거나 WebSecurityConfigureAdapter를 확장한 빈으로 설정되어 있어야 한다.
+@Configuration // Configuration 어노테이션은 스프링 IOC Container에게 해당 클래스르 Bean 구성 Class임을 알려주는 것이다0
 @RequiredArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final JwtTokenProdvider jwtTokenProdvider;
